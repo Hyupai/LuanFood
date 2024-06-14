@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+    <title>Luan Food - Inicio</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <style>
+      @charset "UTF-8";
+      @import url(https://img.imgsmail.ru/e/1556105173/css/main-flat-2018.css);
+
+      html {
+        height: 100%;
+      }
+
+      body {
+        color: #333;
+        font-family: "Helvеtica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        height: 100%;
+        line-height: 20px;
+        margin: 0;
+      }
+
+      .page {
+        background: #fff;
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+
+      .page__content {
+        padding: 10px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .nav {
+        background: #168DE2;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        color: #fff;
+        height: 44px;
+        margin: 0 auto;
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        z-index: 1;
+      }
+
+      .nav__list {
+        float: right;
+      }
+
+      .nav__item {
+        cursor: pointer;
+        display: block;
+        float: left;
+        height: 44px;
+        position: relative;
+        transition: all 0.2s;
+        width: 44px;
+      }
+
+      .nav__item.m-active {
+        background: #1378C0;
+      }
+
+      .nav__item-icon {
+        content: "";
+        display: block;
+        height: 21px;
+        margin: 12px auto 0;
+        width: 21px;
+      }
+
+      .nav__item[data-count]:after {
+        background-color: #FFA930;
+        border-radius: 15px;
+        color: #FFF;
+        content: attr(data-count);
+        display: block;
+        font-size: 12px;
+        font-style: normal;
+        height: 15px;
+        line-height: 16px;
+        min-width: 7px;
+        padding: 0 4px;
+        position: absolute;
+        right: 6px;
+        text-align: center;
+        top: 6px;
+      }
+
+      .nav__title {
+        font-size: 18px;
+        line-height: 20px;
+        margin: 0 0 0 44px;
+        padding: 14px 0 0 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .aside {
+        background: #333;
+        color: #F0F0F0;
+        font-size: 17px;
+        height: 100%;
+        left: -110%;
+        padding-left: 10%;
+        position: absolute;
+        transition: left 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        width: 100%;
+      }
+
+      .aside__header {
+        border-bottom: 1px solid #F0F0F0;
+        color: #F0F0F0;
+        display: block;
+        font-size: 12px;
+        line-height: 18px;
+        padding: 16px 12px 0;
+        text-transform: uppercase;
+      }
+
+      .aside__item+.aside__item .aside__text {
+        border-top: 1px solid #262626;
+      }
+
+      .aside__link {
+        background: #333;
+        color: #A6A6A6;
+        display: block;
+        font-size: 17px;
+        margin: 0;
+        position: relative;
+        transition: all 0.2s;
+      }
+
+      .aside__link:hover {
+        background: #222;
+        color: #fff;
+      }
+
+      .aside__text {
+        display: block;
+        line-height: 21px;
+        margin: 0 0 0 12px;
+        min-height: 21px;
+        padding: 13px 12px 10px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .aside__icon {
+        float: left;
+        margin: 0 12px 0 0;
+        height: 21px;
+        width: 21px;
+      }
+
+      .page.m-show-aside .aside {
+        left: -10%;
+      }
+      .status-card {
+        margin: 5px;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border-radius: 2px;
+        }
+        .status-card.status-card--hoverable:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+        .status-card .status-card__content {
+        padding: 4px;
+        margin-left: 90px;
+        }
+
+        .status-card__icon {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 2px;
+        float: left;
+        width: 90px;
+        height: 90px;
+        text-align: center;
+        font-size: 45px;
+        line-height: 90px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        }
+
+        .status-card__content .number {
+        font-weight: 700;
+        font-size: 18px;
+        color: RGBA(0, 0, 0, 0.87);
+        }
+        .status-card__content .title {
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+        color: RGBA(0, 0, 0, 0.54);
+        }
+        .status-card__content .description {
+        margin-top: 18px;
+        font-size: 12px;
+        font-weight: lighter;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: RGBA(0, 0, 0, 0.54);
+        }
+
+        .status-card__icon--success {
+        background-color: #33b86c;
+        }
+
+        .status-card__icon--info {
+        background-color: #29b6f6;
+        }
+
+        .status-card__icon--warning {
+        background-color: #ffd740;
+        }
+
+        .status-card__icon--danger {
+        background-color: #ef5350;
+        }
+        .wrapper{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding-top: 12%;
+ }
+ .user-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 40px;
+	width: 650px;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0 2px 20px -5px rgba(0,0,0,0.5);
+}
+ 
+.user-card:before {
+   content: '';
+   position: absolute;
+   height: 300%;
+   width: 173px;
+   background: #262626;
+   top: -60px;
+   left: -125px;
+   z-index: 0;
+   transform: rotate(17deg);
+ }
+ 
+ .user-card-img {
+   display: flex;
+   justify-content: center;
+   align-items: center;   
+   z-index: 3;
+ }
+ 
+ .user-card-img img {
+   width: 200px;
+   height: 200px;
+   object-fit: cover;
+   	border-radius: 50%;
+ }
+ 
+ .user-card-info {
+   text-align: center;
+ }
+ 
+ .user-card-info h2 {
+   font-size: 24px;
+   margin: 0;
+   margin-bottom: 10px;
+   font-family: 'Bebas Neue', sans-serif;
+   letter-spacing: 3px;
+ }
+ 
+ .user-card-info p {
+   font-size: 14px;
+   margin-bottom: 2px;
+ }
+ .user-card-info p span {
+	font-weight: 700;
+	margin-right: 10px;
+}
+ @media only screen and (min-width: 768px) {
+  .wrapper{
+      padding-top: 3%;
+   }
+   .user-card:before {
+      width: 300%;
+      height: 200px;
+      transform: rotate(0);
+   }
+   .user-card-info h2 {
+      margin-top: 25px;
+      font-size: 30px;
+   }
+   .user-card-info p span {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 18px;
+   }
+ }
+
+ @media (max-width: 767px){
+   .wrapper{
+      padding-top: 3%;
+   }
+   .user-card:before {
+      width: 300%;
+      height: 200px;
+      transform: rotate(0);
+   }
+   .user-card-info h2 {
+      margin-top: 25px;
+      font-size: 30px;
+   }
+   .user-card-info p span {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 18px;
+   }
+ }
+
+ div#map1 {
+  width: 100%;
+  height: 200px;
+}
+
+div#map2 {
+  width: 100%;
+  height: 200px;
+}
+
+div#map3 {
+  width: 100%;
+  height: 200px;
+}
+
+div.polaroid {
+  width: 90%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+div.container2 {
+  padding: 10px;
+  background: rgba(242,246,248,1);
+}
+ 
+ 
+
+    </style>
+  </head>
+  <body translate="no">
+    <div class="page" id="page">
+      <div class="nav">
+        <a class="nav__item" href="#" id="toggleMenu" onclick="toggleAside(this)">
+          <i class="nav__item-icon pm-uh-burger"></i>
+        </a>
+        <div class="nav__list">
+          <a class="nav__item" style="visibility: hidden" data-count="1" href="">
+            <i class="nav__item-icon pm-uh-notification"></i>
+          </a>
+          <a class="nav__item" style="visibility: hidden" href="#">
+            <i class="nav__item-icon pm-uh-add"></i>
+          </a>
+        </div>
+
+        <div class="nav__title">Luan Food Delivery</div>
+      </div>
+      <div class="aside">
+        <div class="aside__header">Pessoal</div>
+        <div class="aside__item">
+          <a href="#" onclick="meu_perfil();" class="aside__link">
+            <span class="aside__text">
+              <i class="aside__icon pm-uh-profile"></i>Meu Perfil</span>
+          </a>
+        </div>
+        <div class="aside__item">
+          <a href="#" onclick="minhas_entregas();" class="aside__link">
+            <span class="aside__text">
+              <i class="aside__icon pm-uh-catalog"></i>  Historico de Entregas Feitas</span>
+          </a>
+        </div>
+     
+        <div class="aside__item">
+          <a href="#" onclick="minhas_rotas();" class="aside__link">
+            <span class="aside__text">
+              <i class="aside__icon pm-uh-map-route"></i>Minhas Rotas</span>
+          </a>
+        </div>
+        <div class="aside__header">Entregas</div>
+        <div class="aside__item">
+            <a href="#" onclick="minhas_entregas_pendentes();" class="aside__link">
+              <span class="aside__text">
+                <i class="aside__icon pm-uh-profile"></i>Minhas Entregas Pendentes</span>
+            </a>
+          </div>
+        <div class="aside__item">
+          <a  href="#" onclick="entregas_pendentes();" class="aside__link">
+            <span class="aside__text">
+              <i class="aside__icon pm-uh-folder-shared"></i>Entregas Pendentes Geral</span>
+          </a>
+        </div>
+      
+        <div class="aside__header">Configurações</div>
+       
+        <div class="aside__item">
+            <a href="#" onclick="sair();" class="aside__link">
+              <span class="aside__text">
+                <i class="aside__icon pm-uh-settings"></i>Sair</span>
+            </a>
+          </div>
+      </div>
+      <div class="page__content">
+
+        <!---  Entregas Pendentes -->
+
+        <div class="container" id="entregas_pendentes" style="display: none;">
+          <div class="row">
+            <div class="col-md-4" style="width: 95%;">
+              <div class="status-card status-card--hoverable">
+                <span class="status-card__icon status-card__icon--warning">
+                <i class="fa fa-exclamation"></i>
+              </span>
+                <div class="status-card__content">
+                  <div class="number">Cliente: Maria Fernanda</div>
+                  <div class="title">Endereço: Rua A, 43</div>
+                  <div class="title">Status: Pendente</div>
+                  <button>Fazer Entrega</button>
+                </div>
+              </div>  
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4" style="width: 95%;">
+              <div class="status-card status-card--hoverable">
+                <span class="status-card__icon status-card__icon--warning">
+                <i class="fa fa-exclamation"></i>
+              </span>
+                <div class="status-card__content">
+                  <div class="number">Cliente: Jonatas Albuquerque</div>
+                  <div class="title">Endereço: Rua C, 143</div>
+                  <div class="title">Status: Pendente</div>
+                  <button>Fazer Entrega</button>
+                </div>
+              </div>  
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4" style="width: 95%;">
+              <div class="status-card status-card--hoverable">
+                <span class="status-card__icon status-card__icon--warning">
+                <i class="fa fa-exclamation"></i>
+              </span>
+                <div class="status-card__content">
+                  <div class="number">Cliente: Alice da Silva</div>
+                  <div class="title">Endereço: Rua C, 03</div>
+                  <div class="title">Status: Pendente</div>
+                  <button>Fazer Entrega</button>
+                </div>
+              </div>  
+            </div>
+          </div>
+          <br>
+         
+        </div>
+
+         <!---  Minhas Entregas Pendentes -->
+
+         <div class="container" id="minhas_entregas_pendentes" style="display: none;">
+          <div class="row">
+            <div class="col-md-4" style="width: 95%;">
+              <div class="status-card status-card--hoverable">
+                <span class="status-card__icon status-card__icon--warning">
+                <i class="fa fa-exclamation"></i>
+              </span>
+                <div class="status-card__content">
+                  <div class="number">Cliente: Fernanda Duarte</div>
+                  <div class="title">Endereço: Rua A, 783</div>
+                  <div class="title">Status: Em Rota</div>
+                  <button>Reportar um problema</button>
+                </div>
+              </div>  
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4" style="width: 95%;">
+              <div class="status-card status-card--hoverable">
+                <span class="status-card__icon status-card__icon--warning">
+                <i class="fa fa-exclamation"></i>
+              </span>
+                <div class="status-card__content">
+                  <div class="number">Cliente: Mario Conhao</div>
+                  <div class="title">Endereço: Rua C, 143</div>
+                  <div class="title">Status: Em Rota</div>
+                  <button>Reportar um problema</button>
+                </div>
+              </div>  
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4" style="width: 95%;">
+              <div class="status-card status-card--hoverable">
+                <span class="status-card__icon status-card__icon--warning">
+                <i class="fa fa-exclamation"></i>
+              </span>
+                <div class="status-card__content">
+                  <div class="number">Cliente: Maria da Silva</div>
+                  <div class="title">Endereço: Rua F, 103</div>
+                  <div class="title">Status: Em Rota</div>
+                  <button>Reportar um problema</button>
+                </div>
+              </div>  
+            </div>
+          </div>
+          <br>
+         
+        </div>
+
+
+          <!---  Minhas Entregas -->
+
+        <div class="container" id="minhas_entregas" style="display: none;">
+          <div class="row">
+            <div class="col-md-4" style="width: 95%;">
+              <div class="status-card status-card--hoverable">
+                <span class="status-card__icon status-card__icon--success">
+                <i class="fa fa-check"></i>
+              </span>
+                <div class="status-card__content">
+                  <div class="number">Cliente: José Marques</div>
+                  <div class="title">Endereço: Rua D, 543</div>
+                  <div class="title">Status: Concluido</div>
+                  <div class="title">Horario de Conclusao: 12/05/2024 17:40</div>
+                  
+                </div>
+              </div>  
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4" style="width: 95%;">
+              <div class="status-card status-card--hoverable">
+                <span class="status-card__icon status-card__icon--success">
+                <i class="fa fa-check"></i>
+              </span>
+                <div class="status-card__content">
+                  <div class="number">Cliente: Cristina Rocha</div>
+                  <div class="title">Endereço: Avenida F, 156 Apto 2</div>
+                  <div class="title">Status: Concluido</div>
+                  <div class="title">Horario de Conclusao: 12/05/2024 17:20</div>
+                  
+                </div>
+              </div>  
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4" style="width: 95%;">
+              <div class="status-card status-card--hoverable">
+                <span class="status-card__icon status-card__icon--success">
+                <i class="fa fa-check"></i>
+              </span>
+                <div class="status-card__content">
+                  <div class="number">Cliente: Luiz Fontes</div>
+                  <div class="title">Endereço: Rua E, 573</div>
+                  <div class="title">Status: Concluido</div>
+                  <div class="title">Horario de Conclusao: 12/05/2024 17:00</div>
+                  
+                </div>
+              </div>  
+            </div>
+          </div>
+          <br>
+         
+        </div>
+
+        <!----  Meu Perfil -->
+
+        <div class="wrapper" id="meu_perfil" style="margin-right: 18px;">
+          <div class="user-card">
+              <div class="user-card-img">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjxivAs4UknzmDfLBXGMxQkayiZDhR2ftB4jcIV7LEnIEStiUyMygioZnbLXCAND-I_xWQpVp0jv-dv9NVNbuKn4sNpXYtLIJk2-IOdWQNpC2Ldapnljifu0pnQqAWU848Ja4lT9ugQex-nwECEh3a96GXwiRXlnGEE6FFF_tKm66IGe3fzmLaVIoNL/s1600/img_avatar.png" alt="">
+              </div>
+              <div class="user-card-info">
+                <h2>Augusto Vieira</h2>
+                <br>
+                <p><span>Codigo de Entregador:</span> 123</p>
+                <p><span>Email:</span> abcd@email.com</p>
+                <p><span>Placa:</span> ABC-1234</p>
+                <p><span>Endereço:</span> Rua X, 123</p>
+              </div>
+
+              
+          </div>
+        </div>
+
+    <!-- Minhas rotas -->
+    <div id="minhas_rotas" style="display:none;">
+
+      <div class="polaroid">
+        <div class="container2">
+          <div id="map1"></div>
+          <h2>Explanada</h2>
+        </div>
+      </div>
+    <br>
+      <div class="polaroid">
+        <div class="container2">
+          <div id="map2"></div>
+          <h2>Centro</h2>
+        </div>
+      </div>
+      <br>
+      <div class="polaroid">
+        <div class="container2">
+          <div id="map3"></div>
+          <h2>Santa Cruz</h2>
+        </div>
+      </div>
+    <br>
+    </div> 
+    </div>
+
+
+
+    <script>
+      var page = document.getElementById('page');
+
+      function toggleAside(elem) {
+      
+        var className = 'm-active';
+        if (elem.classList.contains(className)) {
+          elem.classList.remove(className);
+          page.classList.remove('m-show-aside');
+          document.getElementById('meu_perfil').style.visibility = 'visible';
+        document.getElementById('minhas_rotas').style.visibility = 'visible';
+        } else {
+          elem.classList.add(className);
+          page.classList.add('m-show-aside');
+          document.getElementById('meu_perfil').style.visibility = 'hidden';
+        document.getElementById('minhas_rotas').style.visibility = 'hidden';
+        }
+        return false;
+      }
+
+      function sair() {
+        toggleAside(document.getElementById('toggleMenu'));
+        Android.logout();
+      }
+
+      function entregas_pendentes() {
+        toggleAside(document.getElementById('toggleMenu'));
+        document.getElementById('minhas_entregas').style.display = 'none';
+        document.getElementById('meu_perfil').style.display = 'none';
+        document.getElementById('minhas_rotas').style.display = 'none';
+        document.getElementById('entregas_pendentes').style.display = 'block';
+        document.getElementById('minhas_entregas_pendentes').style.display = 'none';
+      }
+
+      function minhas_entregas() {
+        toggleAside(document.getElementById('toggleMenu'));
+        document.getElementById('minhas_entregas').style.display = 'block';
+        document.getElementById('meu_perfil').style.display = 'none';
+        document.getElementById('entregas_pendentes').style.display = 'none';
+        document.getElementById('minhas_rotas').style.display = 'none';
+        document.getElementById('minhas_entregas_pendentes').style.display = 'none';
+      }
+
+      function minhas_entregas_pendentes() {
+        toggleAside(document.getElementById('toggleMenu'));
+        document.getElementById('minhas_entregas').style.display = 'none';
+        document.getElementById('meu_perfil').style.display = 'none';
+        document.getElementById('minhas_rotas').style.display = 'none';
+        document.getElementById('entregas_pendentes').style.display = 'none';
+        document.getElementById('minhas_entregas_pendentes').style.display = 'block';
+
+      }
+      function minhas_rotas() {
+        toggleAside(document.getElementById('toggleMenu'));
+        document.getElementById('minhas_entregas').style.display = 'none';
+        document.getElementById('meu_perfil').style.display = 'none';
+        document.getElementById('entregas_pendentes').style.display = 'none';
+        document.getElementById('minhas_entregas_pendentes').style.display = 'none';
+        document.getElementById('minhas_rotas').style.display = 'block';
+      }
+      function meu_perfil() {
+        window.location.reload();
+      }
+      
+    </script>
+
+    <script>  function initMap() {
+      var worldMapData = [
+        {
+          "Id": "10020",
+          "PropertyCode": "HELHAK",
+          "address": "Siltasaarenkatu 14",
+          "latitude": "60.1791466",
+          "longitude": "24.9473743",
+          "GMapIconImage": "/assets/markers/marker.png",
+          "type": "Hotel",
+          "hotelName": "Cumulus Hakaniemi Helsinki"
+        },
+        {
+          "Id": "10080",
+          "PropertyCode": "HELKAI",
+          "address": "Kaisaniemenkatu 7",
+          "latitude": "60.1716867",
+          "longitude": "24.9458183",
+          "GMapIconImage": "/assets/markers/marker.png",
+          "type": "Hotel",
+          "hotelName": "Cumulus Kaisaniemi Helsinki"
+        },
+        {
+          "Id": "10170",
+          "PropertyCode": "HELMEI",
+          "address": "Tukholmankatu 2",
+          "latitude": "60.1910171",
+          "longitude": "24.9090258",
+          "GMapIconImage": "/assets/markers/marker.png",
+          "type": "Hotel",
+          "hotelName": "Cumulus Meilahti Helsinki"
+        },
+        {
+          "Id": "10090",
+          "PropertyCode": "HELOLY",
+          "address": "Läntinen Brahenkatu 2",
+          "latitude": "60.1868253",
+          "longitude": "24.946055",
+          "GMapIconImage": "/assets/markers/marker.png",
+          "type": "Hotel",
+          "hotelName": "Cumulus Kallio Helsinki"
+        },
+        {
+          "Id": "10280",
+          "PropertyCode": "HELSEU",
+          "address": "Kaivokatu 12",
+          "latitude": "60.1700957",
+          "longitude": "24.9377173",
+          "GMapIconImage": "/assets/markers/marker.png",
+          "type": "Hotel",
+          "hotelName": "Hotel Seurahuone Helsinki"
+        }
+      ];
+  
+      var map1 = new google.maps.Map(document.getElementById('map1'), {
+        zoom: 12,
+        center: new google.maps.LatLng(60.1791466, 24.9473743),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+  
+      var map2 = new google.maps.Map(document.getElementById('map2'), {
+        zoom: 12,
+        center: new google.maps.LatLng(60.1791466, 24.9473743),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+  
+      var map3 = new google.maps.Map(document.getElementById('map3'), {
+        zoom: 12,
+        center: new google.maps.LatLng(60.1791466, 24.9473743),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+  
+  
+      var marker, i, markerContent,
+        infowindow = new google.maps.InfoWindow();
+  
+      for (i = 0; i < worldMapData.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(worldMapData[i].latitude, worldMapData[i].longitude),
+          map: map1 // Change 'map1' to 'map2' or 'map3' respectively for map2 and map3
+        });
+  
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            markerContent = '<div><b>Hotel Name: </b> ' +
+              worldMapData[i].hotelName +
+              '</div><div><b>Address: </b>' +
+              worldMapData[i].address + '</div>';
+  
+            infowindow.setContent(markerContent);
+            infowindow.open(map1, marker); // Change 'map1' to 'map2' or 'map3' respectively for map2 and map3
+          }
+        })(marker, i));
+      }
+    }
+
+    
+  </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAl_3j4BivMuCGpS5DS73Rkt7SNvy29eBQ&amp;callback=initMap" async="" defer=""></script>
+  </body>
+</html>
